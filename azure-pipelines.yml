@@ -18,11 +18,9 @@ steps:
 - task: TerraformCLI@0
   inputs:
     command: 'plan'
-    environmentServiceName: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
     allowTelemetryCollection: true
 
 - task: TerraformCLI@0
   inputs:
     command: 'apply'
-    environmentServiceName: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
     allowTelemetryCollection: true
