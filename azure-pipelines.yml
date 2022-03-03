@@ -10,19 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: TerraformTaskV2@2
+- task: TerraformCLI@0
   inputs:
-    provider: 'azurerm'
     command: 'init'
+    allowTelemetryCollection: true
 
-- task: TerraformTaskV2@2
+- task: TerraformCLI@0
   inputs:
-    provider: 'azurerm'
     command: 'plan'
-    environmentServiceNameAzureRM: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
-
-- task: TerraformTaskV2@2
-  inputs:
-    provider: 'azurerm'
-    command: 'apply'
-    environmentServiceNameAzureRM: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
+    environmentServiceName: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
+    allowTelemetryCollection: false
