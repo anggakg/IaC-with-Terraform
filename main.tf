@@ -11,3 +11,5 @@ module "prod_cluster" {
     cluster_name = "learnk8scluster"
     instance_type= "standard_d2_v2"
 }
+    
+
