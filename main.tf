@@ -10,5 +10,4 @@ module "prod_cluster" {
     env_name     = "prod"
     cluster_name = "learnk8scluster"
     instance_type= "standard_d2_v2"
-
 }
