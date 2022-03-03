@@ -37,4 +37,4 @@ resource "azurerm_kubernetes_cluster" "cluster" {
 }
 
 
-
+#ea
