@@ -15,9 +15,9 @@ steps:
     provider: 'azurerm'
     command: 'init'
     backendServiceArm: 'Azure for Students(73634b88-8d1c-4846-b885-2c5f8a3d2946)'
-    backendAzureRmResourceGroupName: 'tfstate '
-    backendAzureRmStorageAccountName: 'tfstate29347'
-    backendAzureRmContainerName: 'tfstate '
+    backendAzureRmResourceGroupName: 'tfstate'
+    backendAzureRmStorageAccountName: 'tfstate22081'
+    backendAzureRmContainerName: 'tfstate'
     backendAzureRmKey: 'terraform.tfstate'
 
 - task: TerraformTaskV2@2
