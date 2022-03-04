@@ -10,19 +10,22 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: 'latest'
+
 - task: TerraformTaskV2@2
   inputs:
     provider: 'azurerm'
     command: 'init'
-    backendServiceArm: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
-    backendAzureRmResourceGroupName: 'tfstate'
-    backendAzureRmStorageAccountName: 'tfstate72'
-    backendAzureRmContainerName: 'tfstate'
+    backendServiceArm: 'Azure for Students(73634b88-8d1c-4846-b885-2c5f8a3d2946)'
+    backendAzureRmResourceGroupName: 'terraformstorage'
+    backendAzureRmStorageAccountName: 'terraformstorageacc72'
+    backendAzureRmContainerName: 'terraformstorage'
     backendAzureRmKey: 'terraform.tfstate'
 
 - task: TerraformTaskV2@2
   inputs:
     provider: 'azurerm'
     command: 'plan'
-    commandOptions: '-out=tfplan'
-    environmentServiceNameAzureRM: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
+    environmentServiceNameAzureRM: 'Azure for Students(73634b88-8d1c-4846-b885-2c5f8a3d2946)'
