@@ -10,19 +10,28 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: TerraformCLI@0
+- task: TerraformTaskV2@2
   inputs:
+    provider: 'azurerm'
     command: 'init'
-    allowTelemetryCollection: true
+    backendServiceArm: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
+    backendAzureRmResourceGroupName: 'cloud-shell-storage-southeastasia'
+    backendAzureRmStorageAccountName: 'cs1100320017acda01e'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'terraform.tfstate'
 
-- task: TerraformCLI@0
+- task: TerraformTaskV2@2
   inputs:
+    provider: 'azurerm'
     command: 'plan'
-    environmentServiceName: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
-    allowTelemetryCollection: false
+    environmentServiceNameAzureRM: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
 
-- task: TerraformCLI@0
+- task: TerraformTaskV2@2
   inputs:
+    provider: 'azurerm'
     command: 'apply'
-    environmentServiceName: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
-    allowTelemetryCollection: false
+    backendServiceArm: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
+    backendAzureRmResourceGroupName: 'cloud-shell-storage-southeastasia'
+    backendAzureRmStorageAccountName: 'cs1100320017acda01e'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'terraform.tfstate'
