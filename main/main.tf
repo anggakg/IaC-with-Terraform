@@ -1,18 +1,20 @@
 terraform {
   required_providers {
     azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=2.48.0"
+      source = "hashicorp/azurerm"
+      version = "2.98.0"
     }
   }
 }
+
 provider "azurerm" {
+  # Configuration options
   features {}
 }
 
 resource "azurerm_resource_group" "rg" {
   name     = "learnk8sResourceGroup-${var.env_name}"
-  location = "northeurope"
+  location = "east us"
 }
 
 resource "azurerm_kubernetes_cluster" "cluster" {
@@ -29,12 +31,48 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   identity {
     type = "SystemAssigned"
   }
-  addon_profile {
-    http_application_routing {
-      enabled = true
-    }
+}
+
+data "azurerm_kubernetes_cluster" "credentials" {
+  name                = azurerm_kubernetes_cluster.cluster.name
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+provider "helm" {
+  kubernetes {
+    host                   = data.azurerm_kubernetes_cluster.credentials.kube_config.0.host
+    client_certificate     = base64decode(data.azurerm_kubernetes_cluster.credentials.kube_config.0.client_certificate)
+    client_key             = base64decode(data.azurerm_kubernetes_cluster.credentials.kube_config.0.client_key)
+    cluster_ca_certificate = base64decode(data.azurerm_kubernetes_cluster.credentials.kube_config.0.cluster_ca_certificate)
+
   }
 }
 
+resource "helm_release" "deployment" {
 
+  name = "${var.helm_name}-${var.env_name}"
+  repository = "https://charts.bitnami.com/bitnami"
+  chart      = "${var.helm_name}"
+  namespace  = "default"
 
+  set {
+    name = var.username
+    value = "user"
+  }
+  set {
+    name = var.password
+    value = "test"
+  }
+  set {
+    name  = "service.type"
+    value = "LoadBalancer"
+  }
+  set {
+    name  = "service.externalPort"
+    value = 80
+  }
+  set {
+    name  = "replicaCount"
+    value = 1
+  }
+}
