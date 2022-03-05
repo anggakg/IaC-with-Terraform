@@ -76,3 +76,4 @@ resource "helm_release" "deployment" {
     value = 1
   }
 }
+
