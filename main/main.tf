@@ -5,12 +5,6 @@ terraform {
       version = "2.98.0"
     }
   }
-  backend "azurerm" {
-        resource_group_name  = "tfstate"
-        storage_account_name = "tfstate22081"
-        container_name       = "tfstate"
-        key                  = "terraform.tfstate"
-    }
 }
 
 provider "azurerm" {
@@ -56,7 +50,7 @@ provider "helm" {
 
 resource "helm_release" "deployment" {
 
-  name = "${var.helm_name}-${var.env_name}"
+  name = "${var.helm_name}"
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "${var.helm_name}"
   namespace  = "default"
