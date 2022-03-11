@@ -13,7 +13,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "learnk8sResourceGroup-${var.env_name}"
+  name     = "aks-${var.env_name}"
   location = "east us"
 }
 
