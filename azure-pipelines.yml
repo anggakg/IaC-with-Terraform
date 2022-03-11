@@ -13,6 +13,7 @@ steps:
 - task: TerraformTaskV2@2
   inputs:
     provider: 'azurerm'
+    displayName: 'Terraform Init'
     command: 'init'
     backendServiceArm: 'Azure for Students(73634b88-8d1c-4846-b885-2c5f8a3d2946)'
     backendAzureRmResourceGroupName: 'tfstate'
@@ -23,12 +24,14 @@ steps:
 - task: TerraformTaskV2@2
   inputs:
     provider: 'azurerm'
+    displayName: 'Terraform Plan'
     command: 'plan'
     environmentServiceNameAzureRM: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
 
 - task: TerraformTaskV2@2
   inputs:
     provider: 'azurerm'
+    displayName: 'Terraform Apply'
     command: 'destroy'
     commandOptions: '-auto-approve'
     environmentServiceNameAzureRM: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
