@@ -4,8 +4,8 @@ module "dev_clusterAKS" {
     cluster_name = "learnk8scluster"
     instance_type= "standard_d2_v2"
     helm_name = "moodle"
-    username = "moodleUsername"
-    password = "moodlePassword"
+    set_username = "moodleUsername"
+    set_password = "moodlePassword"
 }
 
 module "dev_virtualmachine" {
@@ -19,8 +19,8 @@ module "prod_clusterAKS" {
     cluster_name = "learnk8scluster"
     instance_type= "standard_d2_v2"
     helm_name = "wordpress"
-    username = "wordpressUsername"
-    password = "wordpressPassword"
+    set_username = "wordpressUsername"
+    set_password = "wordpressPassword"
 }
 
 module "prod_virtualmachine" {

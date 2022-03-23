@@ -56,12 +56,12 @@ resource "helm_release" "deployment" {
   namespace  = "default"
 
   set {
-    name = var.username
-    value = "user"
+    name = var.set_username
+    value = var.username
   }
   set {
-    name = var.password
-    value = "test"
+    name = var.set_password
+    value = var.password
   }
   set {
     name  = "service.type"
