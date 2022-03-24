@@ -34,6 +34,6 @@ steps:
   displayName: 'Terraform Apply'
   inputs:
     provider: 'azurerm'
-    command: 'destroy'
+    command: 'apply'
     commandOptions: '-input=false tfplan'
     environmentServiceNameAzureRM: 'Azure for Students (73634b88-8d1c-4846-b885-2c5f8a3d2946)'
