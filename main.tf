@@ -28,12 +28,12 @@
 #     env_name     = "prod"
 # }
 
-# module "prod_clusterAKS" {
-#     source       = "./aks"
-#     env_name     = "prod"
-#     cluster_name = "learnk8scluster"
-#     instance_type= "standard_d2_v2"
-#     helm_name = "owncloud"
-#     set_username = "owncloudUsername"
-#     set_password = "owncloudPassword"
-# }
+module "prod_clusterAKS" {
+    source       = "./aks"
+    env_name     = "prod"
+    cluster_name = "learnk8scluster"
+    instance_type= "standard_d2_v2"
+    helm_name = "owncloud"
+    set_username = "owncloudUsername"
+    set_password = "owncloudPassword"
+}
