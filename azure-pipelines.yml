@@ -9,11 +9,8 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-
-
 steps:
-- task: TerraformTaskV2@2
-  displayName: 'Terraform Init'
+- task: TerraformTaskV3@3
   inputs:
     provider: 'azurerm'
     command: 'init'
@@ -24,7 +21,8 @@ steps:
     backendAzureRmContainerName: 'tfstate'
     backendAzureRmKey: 'terraform.tfstate'
 
-- task: TerraformTaskV2@2
+
+- task: TerraformTaskV3@3
   displayName: 'Terraform Plan'
   inputs:
     provider: 'azurerm'
@@ -32,7 +30,7 @@ steps:
     commandOptions: '-out=tfplan -input=false'
     environmentServiceNameAzureRM: 'Azure for Students (6d897306-d565-4948-bbff-e83dfa654aca)'
 
-- task: TerraformTaskV2@2
+- task: TerraformTaskV3@3
   displayName: 'Terraform Apply'
   inputs:
     provider: 'azurerm'
