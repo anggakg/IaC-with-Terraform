@@ -9,6 +9,8 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+
+
 steps:
 - task: TerraformTaskV2@2
   displayName: 'Terraform Init'
